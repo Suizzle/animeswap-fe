@@ -2,6 +2,7 @@ import { NetworkType as SuiNetworkType } from '@animeswap.org/sui-v1-sdk'
 import { NetworkType } from '@animeswap.org/v1-sdk'
 
 export enum SupportedChainId {
+  MOVEMENT = 3000,
   APTOS = 1,
   APTOS_TESTNET = 2,
   APTOS_DEVNET = 34,
@@ -11,6 +12,7 @@ export enum SupportedChainId {
 }
 
 export const CHAIN_IDS_TO_NAMES = {
+  [SupportedChainId.MOVEMENT]: 'MOVEMENT',
   [SupportedChainId.APTOS]: 'aptos',
   [SupportedChainId.APTOS_TESTNET]: 'aptos_testnet',
   [SupportedChainId.APTOS_DEVNET]: 'aptos_devnet',
@@ -20,6 +22,7 @@ export const CHAIN_IDS_TO_NAMES = {
 }
 
 export const CHAIN_IDS_TO_SDK_NETWORK = {
+  [SupportedChainId.MOVEMENT]: NetworkType.Testnet,
   [SupportedChainId.APTOS]: NetworkType.Mainnet,
   [SupportedChainId.APTOS_TESTNET]: NetworkType.Testnet,
   [SupportedChainId.APTOS_DEVNET]: NetworkType.Devnet,

@@ -62,14 +62,17 @@ export const initialState: UserState = {
   userSlippageTolerance: 50, // 50BP
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   coins: {
+    [SupportedChainId.MOVEMENT]: APTOS_CoinInfo,
     [SupportedChainId.APTOS]: APTOS_CoinInfo,
     [SupportedChainId.SUI]: SUI_CoinInfo,
   },
   tempCoins: {
+    [SupportedChainId.MOVEMENT]: {},
     [SupportedChainId.APTOS]: {},
     [SupportedChainId.SUI]: {},
   },
   pairs: {
+    [SupportedChainId.MOVEMENT]: {},
     [SupportedChainId.APTOS]: {},
     [SupportedChainId.SUI]: {},
   },
@@ -79,6 +82,7 @@ export const initialState: UserState = {
 if (!isProductionEnv()) {
   initialState.chainId = SupportedChainId.APTOS_TESTNET
   initialState.coins = {
+    [SupportedChainId.MOVEMENT]: APTOS_CoinInfo,
     [SupportedChainId.APTOS]: APTOS_CoinInfo,
     [SupportedChainId.APTOS_TESTNET]: APTOS_TESTNET_CoinInfo,
     [SupportedChainId.APTOS_DEVNET]: APTOS_DEVNET_CoinInfo,
@@ -87,6 +91,7 @@ if (!isProductionEnv()) {
     [SupportedChainId.SUI_DEVNET]: SUI_DEVNET_CoinInfo,
   }
   initialState.tempCoins = {
+    [SupportedChainId.MOVEMENT]: {},
     [SupportedChainId.APTOS]: {},
     [SupportedChainId.APTOS_TESTNET]: {},
     [SupportedChainId.APTOS_DEVNET]: {},
@@ -95,6 +100,7 @@ if (!isProductionEnv()) {
     [SupportedChainId.SUI_DEVNET]: {},
   }
   initialState.pairs = {
+    [SupportedChainId.MOVEMENT]: {},
     [SupportedChainId.APTOS]: {},
     [SupportedChainId.APTOS_TESTNET]: {},
     [SupportedChainId.APTOS_DEVNET]: {},
@@ -183,6 +189,11 @@ const userSlice = createSlice({
       }
       // update local coin list
       state.coins = {
+        [SupportedChainId.MOVEMENT]: {
+          ...APTOS_CoinInfo,
+          ...state.coins[SupportedChainId.MOVEMENT],
+          ...APTOS_CoinInfo,
+        },
         [SupportedChainId.APTOS]: {
           ...APTOS_CoinInfo,
           ...state.coins[SupportedChainId.APTOS],
@@ -200,6 +211,11 @@ const userSlice = createSlice({
       }
       if (!isProductionEnv()) {
         state.coins = {
+          [SupportedChainId.MOVEMENT]: {
+            ...APTOS_CoinInfo,
+            ...state.coins[SupportedChainId.MOVEMENT],
+            ...APTOS_CoinInfo,
+          },
           [SupportedChainId.APTOS]: {
             ...APTOS_CoinInfo,
             ...state.coins[SupportedChainId.APTOS],
@@ -232,6 +248,7 @@ const userSlice = createSlice({
           },
         }
         state.tempCoins = {
+          [SupportedChainId.MOVEMENT]: {},
           [SupportedChainId.APTOS]: {},
           [SupportedChainId.APTOS_TESTNET]: {},
           [SupportedChainId.APTOS_DEVNET]: {},
@@ -242,6 +259,7 @@ const userSlice = createSlice({
       }
 
       // init local pair
+      state.pairs[SupportedChainId.MOVEMENT] = state.pairs[SupportedChainId.MOVEMENT] || {}
       state.pairs[SupportedChainId.APTOS] = state.pairs[SupportedChainId.APTOS] || {}
       state.pairs[SupportedChainId.SUI] = state.pairs[SupportedChainId.SUI] || {}
       if (!isProductionEnv()) {

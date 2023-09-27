@@ -7,6 +7,7 @@ export enum ConnectionType {
 
 const connectionURLMap = {
   [ConnectionType.DEFAULT]: {
+    [SupportedChainId.MOVEMENT]: `https://seed-node1.movementlabs.xyz/v1`,
     [SupportedChainId.APTOS]: `https://fullnode.mainnet.aptoslabs.com`,
     // [SupportedChainId.APTOS]: `https://aptos-mainnet.nodereal.io/v1/0b8627f45c4544efaa2b71672a21d1c7`,
     [SupportedChainId.APTOS_TESTNET]: `https://testnet.aptoslabs.com`,
@@ -34,6 +35,7 @@ export interface ConnectionState {
 export const initialState: ConnectionState = {
   currentConnection: ConnectionType.DEFAULT,
   error: {
+    [SupportedChainId.MOVEMENT]: undefined,
     [SupportedChainId.APTOS]: undefined,
     [SupportedChainId.APTOS_TESTNET]: undefined,
     [SupportedChainId.APTOS_DEVNET]: undefined,

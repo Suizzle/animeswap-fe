@@ -1,5 +1,6 @@
 import aptosLogo from 'assets/aptos_logo.svg'
 import suiLogo from 'assets/sui_logo.svg'
+import movementLogo from 'assets/movement_logo.png'
 import { Coin } from 'hooks/common/Coin'
 
 import { SupportedChainId } from './chains'
@@ -31,6 +32,18 @@ interface BaseChainInfo {
 export type ChainInfoMap = { readonly [chainId: number]: BaseChainInfo }
 
 export const CHAIN_INFO: ChainInfoMap = {
+  [SupportedChainId.MOVEMENT]: {
+    docs: 'https://docs.movementlabs.xyz/',
+    explorer: 'https://explorer.movementlabs.xyz/',
+    label: 'Movement Network',
+    logoUrl: movementLogo,
+    nativeCoin: APTOS_CoinInfo['0x1::aptos_coin::AptosCoin'],
+    aniCoin: APTOS_CoinInfo['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::AnimeCoin::ANI'],
+    defaultBuyCoin:
+      APTOS_CoinInfo['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::AnimeCoin::ANI'],
+    stableCoin: APTOS_CoinInfo['0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC'],
+    zUSDC: APTOS_CoinInfo['0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC'],
+  },
   [SupportedChainId.APTOS]: {
     docs: 'https://aptoslabs.com/',
     explorer: 'https://explorer.aptoslabs.com/?network=mainnet',
