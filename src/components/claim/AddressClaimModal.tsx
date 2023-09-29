@@ -7,6 +7,7 @@ import { useChainId } from 'state/user/hooks'
 import { SignAndSubmitTransaction, useAccount } from 'state/wallets/hooks'
 import styled from 'styled-components/macro'
 
+import { SWAP_DEPLOYER_ADDRESS } from '../../constants/coinInfo'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { CloseIcon, ExternalLink, ThemedText } from '../../theme'
 import { ExplorerDataType, getExplorerLink } from '../../utils/getExplorerLink'
@@ -16,10 +17,6 @@ import { Break, CardSection, DataCard } from '../earn/styled'
 import { CardBGImage, CardNoise } from '../earn/styled'
 import Modal from '../Modal'
 import { RowBetween } from '../Row'
-
-import {
-  SWAP_DEPLOYER_ADDRESS
-} from '../../constants/coinInfo'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -79,11 +76,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     await SignAndSubmitTransaction(chainId, transaction)
     setTimeout(() => {
       updateSinceTimeBTC()
-      ConnectionInstance.getCoinBalance(
-        chainId,
-        account,
-        `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`
-      )
+      ConnectionInstance.getCoinBalance(chainId, account, `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`)
     }, REFRESH_TIMEOUT)
   }
 
@@ -112,11 +105,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     await SignAndSubmitTransaction(chainId, transaction)
     setTimeout(() => {
       updateSinceTimeUSDT()
-      ConnectionInstance.getCoinBalance(
-        chainId,
-        account,
-        `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`
-      )
+      ConnectionInstance.getCoinBalance(chainId, account, `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`)
     }, REFRESH_TIMEOUT)
   }
 

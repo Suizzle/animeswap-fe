@@ -1,22 +1,19 @@
 import aptosLogo from 'assets/aptos_logo.svg'
-import suiLogo from 'assets/sui_logo.svg'
 import movementLogo from 'assets/movement_logo.png'
+import suiLogo from 'assets/sui_logo.svg'
 import { Coin } from 'hooks/common/Coin'
 
 import { SupportedChainId } from './chains'
 import {
-  MOVEMENT_CoinInfo,
   APTOS_CoinInfo,
   APTOS_DEVNET_CoinInfo,
   APTOS_TESTNET_CoinInfo,
+  MOVEMENT_CoinInfo,
   SUI_CoinInfo,
   SUI_DEVNET_CoinInfo,
   SUI_TESTNET_CoinInfo,
 } from './coinInfo'
-
-import {
-  SWAP_DEPLOYER_ADDRESS
-} from './coinInfo'
+import { SWAP_DEPLOYER_ADDRESS } from './coinInfo'
 
 interface BaseChainInfo {
   readonly docs: string
@@ -39,13 +36,12 @@ export type ChainInfoMap = { readonly [chainId: number]: BaseChainInfo }
 export const CHAIN_INFO: ChainInfoMap = {
   [SupportedChainId.MOVEMENT]: {
     docs: 'https://docs.movementlabs.xyz/',
-    explorer: 'https://explorer.aptoslabs.com/?network=testnet',//'https://explorer.movementlabs.xyz/',
+    explorer: 'https://explorer.aptoslabs.com/?network=testnet', //'https://explorer.movementlabs.xyz/',
     label: 'Movement Network',
     logoUrl: movementLogo,
     nativeCoin: MOVEMENT_CoinInfo['0x1::aptos_coin::AptosCoin'],
     aniCoin: MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`],
-    defaultBuyCoin:
-      MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`],
+    defaultBuyCoin: MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`],
     stableCoin: MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`],
   },
   [SupportedChainId.APTOS]: {

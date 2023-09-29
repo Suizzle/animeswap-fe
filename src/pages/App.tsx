@@ -2,10 +2,13 @@ import Footer from 'components/Footer'
 import Loader from 'components/Loader'
 import TopLevelModals from 'components/TopLevelModals'
 import { useFeatureFlagsIsLoaded } from 'featureFlags'
+import Lottie from 'lottie-react'
 import { Suspense, useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
+import BlocksZoomLottie from '../assets/lottie-blocks-zoom.json'
+import MovementTextLogo from '../assets/movement-text-logo.svg'
 import { useAnalyticsReporter } from '../components/analytics'
 import ErrorBoundary from '../components/ErrorBoundary'
 import Header from '../components/Header'
@@ -18,10 +21,6 @@ import Pool from './Pool'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
-
-import Lottie from "lottie-react";
-import BlocksZoomLottie from "../assets/lottie-blocks-zoom.json";
-import MovementTextLogo from "../assets/movement-text-logo.svg";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -80,7 +79,6 @@ const BottomRightLogo = styled.div`
     left: 50%;
     transform: translate(-50%, 0px);
   `};
-
 `
 
 const BottomLeftLogo = styled.div`
@@ -112,7 +110,7 @@ const LottieWrapper = styled.div`
 `
 
 const MovementTextLogoWrapper = styled.img`
-  filter: ${({ theme }) => theme.darkMode  ? "invert(1)" : "none"}
+  filter: ${({ theme }) => (theme.darkMode ? 'invert(1)' : 'none')};
 `
 
 export default function App() {
@@ -158,14 +156,14 @@ export default function App() {
           <Footer />
         </FooterWrapper>
         <BottomRightLogo>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ paddingTop: "5px" }}>Powered by</span>
-            <MovementTextLogoWrapper src={MovementTextLogo}/>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ paddingTop: '5px' }}>Powered by</span>
+            <MovementTextLogoWrapper src={MovementTextLogo} />
           </div>
         </BottomRightLogo>
         {/*<BottomLeftLogo />*/}
         <LottieWrapper>
-          <Lottie animationData={BlocksZoomLottie} loop={true} style={{ width: "100%", height: "100%"}}/>
+          <Lottie animationData={BlocksZoomLottie} loop={true} style={{ width: '100%', height: '100%' }} />
         </LottieWrapper>
       </AppWrapper>
     </ErrorBoundary>

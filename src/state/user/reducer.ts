@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { SupportedChainId } from 'constants/chains'
 import {
-  MOVEMENT_CoinInfo,
   APTOS_CoinInfo,
   APTOS_DEVNET_CoinInfo,
   APTOS_TESTNET_CoinInfo,
+  MOVEMENT_CoinInfo,
   SUI_CoinInfo,
   SUI_DEVNET_CoinInfo,
   SUI_TESTNET_CoinInfo,

@@ -3,7 +3,7 @@ import { Navigate, useLocation, useParams } from 'react-router-dom'
 // Redirects to swap but only replace the pathname
 export function RedirectPathToSwapOnly() {
   const location = useLocation()
-  return <Navigate to={{ ...location, pathname: '/swap' }} replace />
+  return <Navigate to={{ ...location, pathname: '/swap', search: 'chain=MOVEMENT' }} replace />
 }
 
 // Redirects from the /swap/:toCoin path to the /swap?toCoin=:toCoin format

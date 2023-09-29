@@ -84,7 +84,7 @@ export default function Explore() {
   useEffect(() => {
     const preparePoolData = async () => {
       const pairs = await ConnectionInstance.getAllPair()
-      console.log("jlog pairs =", pairs);
+      console.log('jlog pairs =', pairs)
       const USD_per_APT = queryPrice(pairs, nativeCoin.address, stableCoin.address)
       const tempPoolData: PoolData[] = []
       let totalTvlUSD = BIG_INT_ZERO

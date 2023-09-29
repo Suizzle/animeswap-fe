@@ -306,7 +306,9 @@ export default function Header() {
 
       <HeaderControls>
         <HeaderElement>
-          {[SupportedChainId.MOVEMENT, SupportedChainId.APTOS_TESTNET, SupportedChainId.APTOS_DEVNET].includes(chainId) && (
+          {[SupportedChainId.MOVEMENT, SupportedChainId.APTOS_TESTNET, SupportedChainId.APTOS_DEVNET].includes(
+            chainId
+          ) && (
             <ANIbutton
               onClick={() => {
                 openClaimModal()

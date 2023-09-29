@@ -1,6 +1,6 @@
 import { Coin } from 'hooks/common/Coin'
 
-export const SWAP_DEPLOYER_ADDRESS = "0x6dc4a568ae04c627de026a740f12d6d2d7e329001e6c37eecb8afdc66ad4a593";
+export const SWAP_DEPLOYER_ADDRESS = '0x6dc4a568ae04c627de026a740f12d6d2d7e329001e6c37eecb8afdc66ad4a593'
 
 export const MOVEMENT_CoinInfo: { [address: string]: Coin } = {
   '0x1::aptos_coin::AptosCoin': {
@@ -32,7 +32,7 @@ export const MOVEMENT_CoinInfo: { [address: string]: Coin } = {
     symbol: 'BTC',
     name: 'Bitcoin',
     logoURL: ['https://coinlist.animeswap.org/icons/BTC.webp'],
-  }
+  },
 }
 
 export const APTOS_CoinInfo: { [address: string]: Coin } = {

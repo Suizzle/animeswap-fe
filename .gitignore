@@ -38,3 +38,6 @@ cypress/screenshots
 
 .vercel
 build.zip
+
+.firebaserc
+firebase.json

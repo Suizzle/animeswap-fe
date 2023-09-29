@@ -61,5 +61,6 @@
       "error",
       "always"
     ]
-  }
+  },
+  "prettier/prettier": ["error", { "endOfLine": "off" }]
 }

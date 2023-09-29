@@ -45,7 +45,11 @@ class ConnectionInstance {
     if (!ConnectionInstance.sdk) {
       const state = store.getState()
       const networkType: NetworkType = CHAIN_IDS_TO_SDK_NETWORK[state.user.chainId]
-      ConnectionInstance.sdk = new SDK(getRPCURL(state.connection.currentConnection, state.user.chainId), networkType, state.user.chainId)
+      ConnectionInstance.sdk = new SDK(
+        getRPCURL(state.connection.currentConnection, state.user.chainId),
+        networkType,
+        state.user.chainId
+      )
     }
     return ConnectionInstance.sdk
   }
@@ -56,7 +60,7 @@ class ConnectionInstance {
   }
 
   public static async syncAccountResources(account: string, chainId: SupportedChainId, poolPair = false) {
-    console.log("jlog syncAccountResources: ", account, chainId, poolPair);
+    console.log('jlog syncAccountResources: ', account, chainId, poolPair)
     if (isSuiChain(chainId)) {
       return this.syncSuiAccountResources(account, chainId, poolPair)
     }

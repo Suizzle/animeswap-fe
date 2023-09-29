@@ -9,7 +9,10 @@ import { addConnectedWallet, setAccount, setSelectedWallet, setWalletChain } fro
 import { Wallet, WalletType } from './types'
 
 export function useCoinBalance(address: string): string | undefined {
-  console.log("jlog state: ", useAppSelector((state) => state));
+  console.log(
+    'jlog state: ',
+    useAppSelector((state) => state)
+  )
   return useAppSelector((state) => state.wallets.coinBalances[address])
 }
 
