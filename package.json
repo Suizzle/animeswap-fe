@@ -110,6 +110,7 @@
     "copy-to-clipboard": "^3.3.3",
     "inter-ui": "^3.19.3",
     "jotai": "^1.11.0",
+    "lottie-react": "^2.4.0",
     "make-plural": "^7.2.0",
     "node-vibrant": "^3.2.1-alpha.1",
     "numbro": "^2.3.6",

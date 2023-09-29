@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { SupportedChainId } from 'constants/chains'
 import {
+  MOVEMENT_CoinInfo,
   APTOS_CoinInfo,
   APTOS_DEVNET_CoinInfo,
   APTOS_TESTNET_CoinInfo,
@@ -62,7 +63,7 @@ export const initialState: UserState = {
   userSlippageTolerance: 50, // 50BP
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   coins: {
-    [SupportedChainId.MOVEMENT]: APTOS_CoinInfo,
+    [SupportedChainId.MOVEMENT]: MOVEMENT_CoinInfo,
     [SupportedChainId.APTOS]: APTOS_CoinInfo,
     [SupportedChainId.SUI]: SUI_CoinInfo,
   },
@@ -82,7 +83,7 @@ export const initialState: UserState = {
 if (!isProductionEnv()) {
   initialState.chainId = SupportedChainId.APTOS_TESTNET
   initialState.coins = {
-    [SupportedChainId.MOVEMENT]: APTOS_CoinInfo,
+    [SupportedChainId.MOVEMENT]: MOVEMENT_CoinInfo,
     [SupportedChainId.APTOS]: APTOS_CoinInfo,
     [SupportedChainId.APTOS_TESTNET]: APTOS_TESTNET_CoinInfo,
     [SupportedChainId.APTOS_DEVNET]: APTOS_DEVNET_CoinInfo,
@@ -190,9 +191,9 @@ const userSlice = createSlice({
       // update local coin list
       state.coins = {
         [SupportedChainId.MOVEMENT]: {
-          ...APTOS_CoinInfo,
+          ...MOVEMENT_CoinInfo,
           ...state.coins[SupportedChainId.MOVEMENT],
-          ...APTOS_CoinInfo,
+          ...MOVEMENT_CoinInfo,
         },
         [SupportedChainId.APTOS]: {
           ...APTOS_CoinInfo,
@@ -206,15 +207,16 @@ const userSlice = createSlice({
         },
       }
       state.tempCoins = {
+        [SupportedChainId.MOVEMENT]: {},
         [SupportedChainId.APTOS]: {},
         [SupportedChainId.SUI]: {},
       }
       if (!isProductionEnv()) {
         state.coins = {
           [SupportedChainId.MOVEMENT]: {
-            ...APTOS_CoinInfo,
+            ...MOVEMENT_CoinInfo,
             ...state.coins[SupportedChainId.MOVEMENT],
-            ...APTOS_CoinInfo,
+            ...MOVEMENT_CoinInfo,
           },
           [SupportedChainId.APTOS]: {
             ...APTOS_CoinInfo,

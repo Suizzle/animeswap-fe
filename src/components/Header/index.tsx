@@ -17,7 +17,7 @@ import styled from 'styled-components/macro'
 import { ExternalLink } from 'theme'
 import { isDevelopmentEnv } from 'utils/env'
 
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/movement_logo.png'
 import { ButtonPrimary } from '../Button'
 import Menu from '../Menu'
 import Row from '../Row'
@@ -306,7 +306,7 @@ export default function Header() {
 
       <HeaderControls>
         <HeaderElement>
-          {[SupportedChainId.APTOS_TESTNET, SupportedChainId.APTOS_DEVNET].includes(chainId) && (
+          {[SupportedChainId.MOVEMENT, SupportedChainId.APTOS_TESTNET, SupportedChainId.APTOS_DEVNET].includes(chainId) && (
             <ANIbutton
               onClick={() => {
                 openClaimModal()

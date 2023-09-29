@@ -19,6 +19,10 @@ import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 
+import Lottie from "lottie-react";
+import BlocksZoomLottie from "../assets/lottie-blocks-zoom.json";
+import MovementTextLogo from "../assets/movement-text-logo.svg";
+
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -58,26 +62,25 @@ const FooterWrapper = styled.div`
 `
 
 const BottomRightLogo = styled.div`
-  background: url('images/left_char.png');
-  width: 220px;
-  height: 220px;
+  width: 320px;
   position: fixed;
-  right: 0px;
-  bottom: 0px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+  right: 20px;
+  bottom: 40px;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    scale: 0.8;
-    right: -22px;
-    bottom: -22px;
+    right: 0px;
+    bottom: 160px;
+    left: 50%;
+    transform: translate(-50%, 0px);
   `};
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    scale: 0.5;
-    right: -56px;
-    bottom: -54px;
+    right: 0px;
+    bottom: 160px;
+    left: 50%;
+    transform: translate(-50%, 0px);
   `};
+
 `
 
 const BottomLeftLogo = styled.div`
@@ -99,6 +102,17 @@ const BottomLeftLogo = styled.div`
     left: -56px;
     bottom: -54px;
   `};
+`
+
+const LottieWrapper = styled.div`
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+`
+
+const MovementTextLogoWrapper = styled.img`
+  filter: ${({ theme }) => theme.darkMode  ? "invert(1)" : "none"}
 `
 
 export default function App() {
@@ -143,8 +157,16 @@ export default function App() {
         <FooterWrapper>
           <Footer />
         </FooterWrapper>
-        {/* <BottomRightLogo /> */}
-        <BottomLeftLogo />
+        <BottomRightLogo>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ paddingTop: "5px" }}>Powered by</span>
+            <MovementTextLogoWrapper src={MovementTextLogo}/>
+          </div>
+        </BottomRightLogo>
+        {/*<BottomLeftLogo />*/}
+        <LottieWrapper>
+          <Lottie animationData={BlocksZoomLottie} loop={true} style={{ width: "100%", height: "100%"}}/>
+        </LottieWrapper>
       </AppWrapper>
     </ErrorBoundary>
   )

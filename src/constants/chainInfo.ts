@@ -5,12 +5,17 @@ import { Coin } from 'hooks/common/Coin'
 
 import { SupportedChainId } from './chains'
 import {
+  MOVEMENT_CoinInfo,
   APTOS_CoinInfo,
   APTOS_DEVNET_CoinInfo,
   APTOS_TESTNET_CoinInfo,
   SUI_CoinInfo,
   SUI_DEVNET_CoinInfo,
   SUI_TESTNET_CoinInfo,
+} from './coinInfo'
+
+import {
+  SWAP_DEPLOYER_ADDRESS
 } from './coinInfo'
 
 interface BaseChainInfo {
@@ -34,15 +39,14 @@ export type ChainInfoMap = { readonly [chainId: number]: BaseChainInfo }
 export const CHAIN_INFO: ChainInfoMap = {
   [SupportedChainId.MOVEMENT]: {
     docs: 'https://docs.movementlabs.xyz/',
-    explorer: 'https://explorer.movementlabs.xyz/',
+    explorer: 'https://explorer.aptoslabs.com/?network=testnet',//'https://explorer.movementlabs.xyz/',
     label: 'Movement Network',
     logoUrl: movementLogo,
-    nativeCoin: APTOS_CoinInfo['0x1::aptos_coin::AptosCoin'],
-    aniCoin: APTOS_CoinInfo['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::AnimeCoin::ANI'],
+    nativeCoin: MOVEMENT_CoinInfo['0x1::aptos_coin::AptosCoin'],
+    aniCoin: MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`],
     defaultBuyCoin:
-      APTOS_CoinInfo['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::AnimeCoin::ANI'],
-    stableCoin: APTOS_CoinInfo['0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC'],
-    zUSDC: APTOS_CoinInfo['0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa::asset::USDC'],
+      MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`],
+    stableCoin: MOVEMENT_CoinInfo[`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`],
   },
   [SupportedChainId.APTOS]: {
     docs: 'https://aptoslabs.com/',

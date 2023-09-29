@@ -45,17 +45,18 @@ class ConnectionInstance {
     if (!ConnectionInstance.sdk) {
       const state = store.getState()
       const networkType: NetworkType = CHAIN_IDS_TO_SDK_NETWORK[state.user.chainId]
-      ConnectionInstance.sdk = new SDK(getRPCURL(state.connection.currentConnection, state.user.chainId), networkType)
+      ConnectionInstance.sdk = new SDK(getRPCURL(state.connection.currentConnection, state.user.chainId), networkType, state.user.chainId)
     }
     return ConnectionInstance.sdk
   }
 
   public static renewSDK(connection: ConnectionType, chainId: SupportedChainId) {
     const networkType: NetworkType = CHAIN_IDS_TO_SDK_NETWORK[chainId]
-    ConnectionInstance.sdk = new SDK(getRPCURL(connection, chainId), networkType)
+    ConnectionInstance.sdk = new SDK(getRPCURL(connection, chainId), networkType, chainId)
   }
 
   public static async syncAccountResources(account: string, chainId: SupportedChainId, poolPair = false) {
+    console.log("jlog syncAccountResources: ", account, chainId, poolPair);
     if (isSuiChain(chainId)) {
       return this.syncSuiAccountResources(account, chainId, poolPair)
     }
@@ -180,7 +181,7 @@ class ConnectionInstance {
       const timestampNow = ledgerInfo.ledger_timestamp
       const currentLedgerVersion = ledgerInfo.ledger_version
       const oldestLedgerVersion = ledgerInfo.oldest_ledger_version
-      const queryDeltaVersion = Utils.d(1e6) // APR window
+      const queryDeltaVersion = Utils.d(1e3) // APR window
       const queryLedgerVersion = Utils.d(currentLedgerVersion).sub(queryDeltaVersion).gte(Utils.d(oldestLedgerVersion))
         ? Utils.d(currentLedgerVersion).sub(queryDeltaVersion)
         : Utils.d(oldestLedgerVersion)

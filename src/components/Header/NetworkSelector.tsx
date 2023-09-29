@@ -273,7 +273,8 @@ const getChainNameFromId = (id: string | number) => {
   return CHAIN_IDS_TO_NAMES[id as SupportedChainId] || ''
 }
 
-const NETWORK_SELECTOR_CHAINS = [SupportedChainId.MOVEMENT, SupportedChainId.APTOS]
+const NETWORK_SELECTOR_CHAINS = [SupportedChainId.MOVEMENT]
+/*NETWORK_SELECTOR_CHAINS.push(SupportedChainId.APTOS)
 NETWORK_SELECTOR_CHAINS.push(SupportedChainId.APTOS_TESTNET)
 if (isDevelopmentEnv()) {
   NETWORK_SELECTOR_CHAINS.push(SupportedChainId.APTOS_DEVNET)
@@ -281,7 +282,7 @@ if (isDevelopmentEnv()) {
 NETWORK_SELECTOR_CHAINS.push(SupportedChainId.SUI_DEVNET)
 if (isDevelopmentEnv()) {
   NETWORK_SELECTOR_CHAINS.push(SupportedChainId.SUI_TESTNET)
-}
+}*/
 
 export default function NetworkSelector() {
   const dispatch = useAppDispatch()

@@ -243,12 +243,12 @@ export function useBestTrade(
       bestTrade.maximumAmountIn =
         tradeType === TradeType.EXACT_INPUT
           ? bestTrade.inputAmount
-          : new CoinAmount(inputCoin, Utils.d(payload.arguments[3].toString()))
+          : new CoinAmount(inputCoin, Utils.d(payload?.arguments[3].toString()))
 
       bestTrade.miniumAmountOut =
         tradeType === TradeType.EXACT_OUTPUT
           ? bestTrade.outputAmount
-          : new CoinAmount(outputCoin, Utils.d(payload.arguments[3].toString()))
+          : new CoinAmount(outputCoin, Utils.d(payload?.arguments[3].toString()))
       bestTrade.price = bestTrade.inputAmount.amount
         .div(Utils.pow10(inputCoin?.decimals))
         .div(bestTrade.outputAmount.amount.div(Utils.pow10(outputCoin?.decimals)))

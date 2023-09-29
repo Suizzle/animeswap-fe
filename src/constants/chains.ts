@@ -40,6 +40,7 @@ export function isSupportedChain(chainId: number | undefined): chainId is Suppor
 
 export function isAptosChain(chainId: number | undefined): chainId is SupportedChainId {
   return (
+    chainId === SupportedChainId.MOVEMENT ||
     chainId === SupportedChainId.APTOS ||
     chainId === SupportedChainId.APTOS_TESTNET ||
     chainId === SupportedChainId.APTOS_DEVNET

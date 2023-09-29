@@ -17,19 +17,19 @@ const FooterItem = styled.a`
 export default function Footer() {
   return (
     <>
-      <FooterItem target="_blank" href="https://docs.animeswap.org" rel="noreferrer">
+      <FooterItem target="_blank" href="https://docs.movementlabs.xyz/" rel="noreferrer">
         <Blog width="28px" height="28px"></Blog>
       </FooterItem>
-      <FooterItem target="_blank" href="https://discord.com/invite/animeswap" rel="noreferrer">
+      <FooterItem target="_blank" href="https://discord.gg/3kTcXXmvXJ" rel="noreferrer">
         <Discord width="28px" height="28px"></Discord>
       </FooterItem>
-      <FooterItem target="_blank" href="https://twitter.com/animeswap_org" rel="noreferrer">
+      <FooterItem target="_blank" href="https://twitter.com/movementlabsxyz" rel="noreferrer">
         <Twitter width="28px" height="28px"></Twitter>
       </FooterItem>
-      <FooterItem target="_blank" href="https://github.com/AnimeSwap" rel="noreferrer">
+      <FooterItem target="_blank" href="https://github.com/movemntdev" rel="noreferrer">
         <GitHub width="28px" height="28px"></GitHub>
       </FooterItem>
-      <FooterItem target="_blank" href="https://animeswap.org" rel="noreferrer">
+      <FooterItem target="_blank" href="https://movementlabs.xyz/" rel="noreferrer">
         <Help width="28px" height="28px"></Help>
       </FooterItem>
     </>

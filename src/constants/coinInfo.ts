@@ -1,5 +1,40 @@
 import { Coin } from 'hooks/common/Coin'
 
+export const SWAP_DEPLOYER_ADDRESS = "0x6dc4a568ae04c627de026a740f12d6d2d7e329001e6c37eecb8afdc66ad4a593";
+
+export const MOVEMENT_CoinInfo: { [address: string]: Coin } = {
+  '0x1::aptos_coin::AptosCoin': {
+    address: '0x1::aptos_coin::AptosCoin',
+    decimals: 8,
+    symbol: 'APT',
+    name: 'Aptos',
+    logoURL: ['https://coinlist.animeswap.org/icons/APT.svg'],
+    projectURL: 'https://aptoslabs.com/',
+  },
+  [`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`]: {
+    address: `${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`,
+    decimals: 8,
+    symbol: 'ANI',
+    name: 'AnimeSwap Coin',
+    logoURL: ['https://coinlist.animeswap.org/icons/ANI.png'],
+    projectURL: 'http://animeswap.org/',
+  },
+  [`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`]: {
+    address: `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`,
+    decimals: 8,
+    symbol: 'USDT',
+    name: 'Tether USD',
+    logoURL: ['https://coinlist.animeswap.org/icons/USDT.webp'],
+  },
+  [`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`]: {
+    address: `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`,
+    decimals: 8,
+    symbol: 'BTC',
+    name: 'Bitcoin',
+    logoURL: ['https://coinlist.animeswap.org/icons/BTC.webp'],
+  }
+}
+
 export const APTOS_CoinInfo: { [address: string]: Coin } = {
   '0x1::aptos_coin::AptosCoin': {
     address: '0x1::aptos_coin::AptosCoin',

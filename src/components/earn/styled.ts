@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-import uImage from '../../assets/anime_bg.jpg'
+import uImage from '../../assets/movement_bg.png'
 import noise from '../../assets/noise.png'
 import { AutoColumn } from '../Column'
 

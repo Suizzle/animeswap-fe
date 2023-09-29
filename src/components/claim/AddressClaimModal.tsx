@@ -17,6 +17,10 @@ import { CardBGImage, CardNoise } from '../earn/styled'
 import Modal from '../Modal'
 import { RowBetween } from '../Row'
 
+import {
+  SWAP_DEPLOYER_ADDRESS
+} from '../../constants/coinInfo'
+
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
 `
@@ -59,7 +63,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
-  const period = 3600 * 1e3 // 60min
+  const period = 60 * 1e3 // 1min
 
   // monitor the status of the claim from contracts and txns
   const claimPending = useIsTransactionPending(hash ?? '')
@@ -68,9 +72,9 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
   async function faucetBTC() {
     const transaction = {
       type: 'entry_function_payload',
-      function: '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::FaucetV1::request',
-      type_arguments: ['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::BTC'],
-      arguments: ['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c'],
+      function: `${SWAP_DEPLOYER_ADDRESS}::FaucetV1::request`,
+      type_arguments: [`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`],
+      arguments: [SWAP_DEPLOYER_ADDRESS],
     }
     await SignAndSubmitTransaction(chainId, transaction)
     setTimeout(() => {
@@ -78,7 +82,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
       ConnectionInstance.getCoinBalance(
         chainId,
         account,
-        '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::BTC'
+        `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC`
       )
     }, REFRESH_TIMEOUT)
   }
@@ -87,7 +91,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     if (account) {
       const res = await ConnectionInstance.getAccountResource(
         account,
-        '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::FaucetV1::Restricted<0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::BTC>'
+        `${SWAP_DEPLOYER_ADDRESS}::FaucetV1::Restricted<${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::BTC>`
       )
       if (res && res.since) {
         const date = new Date(Number(res.since * 1e3) + period)
@@ -101,9 +105,9 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
   async function faucetUSDT() {
     const transaction = {
       type: 'entry_function_payload',
-      function: '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::FaucetV1::request',
-      type_arguments: ['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::USDT'],
-      arguments: ['0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c'],
+      function: `${SWAP_DEPLOYER_ADDRESS}::FaucetV1::request`,
+      type_arguments: [`${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`],
+      arguments: [SWAP_DEPLOYER_ADDRESS],
     }
     await SignAndSubmitTransaction(chainId, transaction)
     setTimeout(() => {
@@ -111,7 +115,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
       ConnectionInstance.getCoinBalance(
         chainId,
         account,
-        '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::USDT'
+        `${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT`
       )
     }, REFRESH_TIMEOUT)
   }
@@ -120,7 +124,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     if (account) {
       const res = await ConnectionInstance.getAccountResource(
         account,
-        '0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::FaucetV1::Restricted<0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c::TestCoinsV1::USDT>'
+        `${SWAP_DEPLOYER_ADDRESS}::FaucetV1::Restricted<${SWAP_DEPLOYER_ADDRESS}::TestCoinsV1::USDT>`
       )
       if (res && res.since) {
         const date = new Date(Number(res.since * 1e3) + period)

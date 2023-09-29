@@ -129,7 +129,10 @@ function oldColors(darkMode: boolean): Colors {
 
     // backgrounds / greys
     deprecated_bg0: darkMode ? '#191B1F' : '#FFF',
-    deprecated_bg1: darkMode ? '#212429' : '#F7F8FA',
+    
+    // jpatch: main background
+    deprecated_bg1: darkMode ? '#000000' : '#ffe179b5',
+
     deprecated_bg2: darkMode ? '#2C2F36' : '#EDEEF2',
     deprecated_bg3: darkMode ? '#40444F' : '#CED0D9',
     deprecated_bg4: darkMode ? '#565A69' : '#888D9B',
