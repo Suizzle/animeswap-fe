@@ -6,10 +6,10 @@ export const MOVEMENT_CoinInfo: { [address: string]: Coin } = {
   '0x1::aptos_coin::AptosCoin': {
     address: '0x1::aptos_coin::AptosCoin',
     decimals: 8,
-    symbol: 'APT',
-    name: 'Aptos',
-    logoURL: ['https://coinlist.animeswap.org/icons/APT.svg'],
-    projectURL: 'https://aptoslabs.com/',
+    symbol: 'MOVE',
+    name: 'Movement Coin',
+    logoURL: ['https://explorer.movementlabs.xyz/static/media/logow.8058f017e921d308e088ffd868fbb098.svg'],
+    projectURL: 'https://movementlabs.xyz/',
   },
   [`${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`]: {
     address: `${SWAP_DEPLOYER_ADDRESS}::AnimeCoin::ANI`,

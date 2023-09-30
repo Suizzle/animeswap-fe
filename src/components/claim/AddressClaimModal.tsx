@@ -1,10 +1,12 @@
 import { Trans } from '@lingui/macro'
+import axios from 'axios'
 import { SupportedChainId } from 'constants/chains'
 import { REFRESH_TIMEOUT } from 'constants/misc'
 import { useEffect, useState } from 'react'
 import ConnectionInstance from 'state/connection/instance'
+import { ConnectionType, getRPCURL } from 'state/connection/reducer'
 import { useChainId } from 'state/user/hooks'
-import { SignAndSubmitTransaction, useAccount } from 'state/wallets/hooks'
+import { SignAndSubmitTransaction, useAccount, useAccountPubkey, useConnectedWallets } from 'state/wallets/hooks'
 import styled from 'styled-components/macro'
 
 import { SWAP_DEPLOYER_ADDRESS } from '../../constants/coinInfo'
@@ -38,12 +40,15 @@ const ConfirmOrLoadingWrapper = styled.div<{ activeBG: boolean }>`
 
 export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boolean; onDismiss: () => void }) {
   const account = useAccount()
+  const accountPubkey = useAccountPubkey()
   const chainId = useChainId()
   const [attempting, setAttempting] = useState<boolean>(false)
   const [hash, setHash] = useState<string | undefined>()
   const [sinceBTC, setSinceBTC] = useState<Date>(new Date(0))
   const [sinceUSDT, setSinceUSDT] = useState<Date>(new Date(0))
   const [timeNow, setTimeNow] = useState(Date.now())
+
+  const [connectedWallets] = useConnectedWallets()
 
   // useEffect(() => {
   //   if ([SupportedChainId.APTOS_TESTNET].includes(chainId)) {
@@ -65,6 +70,17 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
   // monitor the status of the claim from contracts and txns
   const claimPending = useIsTransactionPending(hash ?? '')
   const claimConfirmed = hash && !claimPending
+
+  async function faucetMOVE() {
+    const rpc = getRPCURL(ConnectionType.DEFAULT, chainId)
+    await axios({
+      method: 'post',
+      url: rpc + '/mint?pub_key=' + accountPubkey,
+    })
+    setTimeout(() => {
+      ConnectionInstance.getCoinBalance(chainId, account, `0x1::aptos_coin::AptosCoin`)
+    }, REFRESH_TIMEOUT)
+  }
 
   async function faucetBTC() {
     const transaction = {
@@ -163,6 +179,18 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
             </ThemedText.DeprecatedSubHeader>
           </AutoColumn>
           <AutoColumn gap="md" style={{ padding: '1rem', paddingTop: '0', paddingBottom: '2rem' }} justify="center">
+            <ButtonPrimary
+              disabled={!account}
+              padding="16px 16px"
+              width="100%"
+              $borderRadius="12px"
+              mt="1rem"
+              onClick={() => {
+                faucetMOVE()
+              }}
+            >
+              Mint MOVE
+            </ButtonPrimary>
             <ButtonPrimary
               disabled={!account || sinceBTC.getTime() > timeNow}
               padding="16px 16px"

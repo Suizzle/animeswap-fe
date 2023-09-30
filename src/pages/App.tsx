@@ -58,6 +58,7 @@ const FooterWrapper = styled.div`
   justify-content: center;
   position: flex;
   padding: 60px 0px 100px 0px;
+  z-index: 1000;
 `
 
 const BottomRightLogo = styled.div`
@@ -65,6 +66,7 @@ const BottomRightLogo = styled.div`
   position: fixed;
   right: 20px;
   bottom: 40px;
+  z-index: 2000;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     right: 0px;
@@ -103,7 +105,7 @@ const BottomLeftLogo = styled.div`
 `
 
 const LottieWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0px;
   height: 100%;
   width: 100%;
@@ -158,12 +160,14 @@ export default function App() {
         <BottomRightLogo>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ paddingTop: '5px' }}>Powered by</span>
-            <MovementTextLogoWrapper src={MovementTextLogo} />
+            <a href="https://movementlabs.xyz/" target="_blank">
+              <MovementTextLogoWrapper src={MovementTextLogo} />
+            </a>
           </div>
         </BottomRightLogo>
         {/*<BottomLeftLogo />*/}
         <LottieWrapper>
-          <Lottie animationData={BlocksZoomLottie} loop={true} style={{ width: '100%', height: '100%' }} />
+          <Lottie animationData={BlocksZoomLottie} loop={true} style={{ minWidth: '200vh' }} />
         </LottieWrapper>
       </AppWrapper>
     </ErrorBoundary>

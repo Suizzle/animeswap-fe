@@ -185,7 +185,7 @@ class ConnectionInstance {
       const timestampNow = ledgerInfo.ledger_timestamp
       const currentLedgerVersion = ledgerInfo.ledger_version
       const oldestLedgerVersion = ledgerInfo.oldest_ledger_version
-      const queryDeltaVersion = Utils.d(1e3) // APR window
+      const queryDeltaVersion = Utils.d(1e1) // APR window
       const queryLedgerVersion = Utils.d(currentLedgerVersion).sub(queryDeltaVersion).gte(Utils.d(oldestLedgerVersion))
         ? Utils.d(currentLedgerVersion).sub(queryDeltaVersion)
         : Utils.d(oldestLedgerVersion)

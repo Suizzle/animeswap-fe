@@ -38,6 +38,10 @@ export function useAccount(): string | undefined {
   return useAppSelector((state) => state.wallets.account)
 }
 
+export function useAccountPubkey(): string | undefined {
+  return useAppSelector((state) => state.wallets.pubkey)
+}
+
 export function useWallet(): WalletType {
   return useAppSelector((state) => state.wallets.selectedWallet)
 }
@@ -98,7 +102,8 @@ export async function ConnectPetra() {
   try {
     const res = await window.aptos.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.PETRA }))
-    store.dispatch(setAccount({ account: res.address }))
+    store.dispatch(setAccount({ account: res.address, pubkey: res.publicKey }))
+    console.log('ConnectPetra res =', res)
     console.log('Petra wallet connect success')
     const network = await window.aptos.network()
     store.dispatch(setWalletChain({ chainId: PetraNetworkToChainId(network) }))
@@ -144,7 +149,7 @@ export async function ConnectMartian() {
   try {
     const res = await window.martian.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.MARTIAN }))
-    store.dispatch(setAccount({ account: res.address }))
+    store.dispatch(setAccount({ account: res.address, pubkey: res.publicKey }))
     console.log('Martian wallet connect success')
     const network = await window.martian.network()
     store.dispatch(setWalletChain({ chainId: MartianNetworkToChainId(network) }))
@@ -193,7 +198,8 @@ export async function ConnectFewcha() {
     const res = await window.fewcha.connect()
     if (res.status !== 200) return false
     store.dispatch(setSelectedWallet({ wallet: WalletType.FEWCHA }))
-    store.dispatch(setAccount({ account: res.data.address }))
+    console.log('ConnectFewcha res =', res)
+    store.dispatch(setAccount({ account: res.data.address, pubkey: res.data.publicKey }))
     console.log('Fewcha wallet connect success')
     return true
   } catch (error) {
@@ -220,7 +226,8 @@ export async function ConnectPontem() {
   try {
     const res = await window.pontem.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.PONTEM }))
-    store.dispatch(setAccount({ account: res.address }))
+    console.log('ConnectPontem res =', res)
+    store.dispatch(setAccount({ account: res.address, pubkey: res.publicKey }))
     console.log('Pontem wallet connect success')
     const network = await window.pontem.network()
     store.dispatch(setWalletChain({ chainId: Number.parseInt(network.chainId) }))
@@ -254,7 +261,8 @@ export async function ConnectRise() {
   try {
     const res = await window.rise.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.RISE }))
-    store.dispatch(setAccount({ account: window.rise.address }))
+    store.dispatch(setAccount({ account: window.rise.address, pubkey: window.rise.publicKey }))
+    console.log('ConnectPontem res =', res)
     console.log('Rise wallet connect success')
     return true
   } catch (error) {
@@ -281,7 +289,7 @@ export async function ConnectBitkeep() {
   try {
     const res = await window.bitkeep.aptos.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.BITKEEP }))
-    store.dispatch(setAccount({ account: res.address }))
+    store.dispatch(setAccount({ account: res.address, pubkey: res.publicKey }))
     console.log('BitKeep connect success')
     return true
   } catch (error) {
@@ -308,7 +316,8 @@ export async function ConnectTrustWallet() {
   try {
     const res = await window.trustwallet.aptos.connect()
     store.dispatch(setSelectedWallet({ wallet: WalletType.TRUSTWALLET }))
-    store.dispatch(setAccount({ account: res.address }))
+    store.dispatch(setAccount({ account: res.address, pubkey: res.publicKey }))
+    console.log('ConnectPontem res =', res)
     console.log('TrustWallet connect success')
     return true
   } catch (error) {

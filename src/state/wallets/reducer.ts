@@ -6,6 +6,7 @@ import { Wallet, WalletType } from './types'
 
 export interface WalletState {
   account: string
+  pubkey: string
   coinBalances: { [address: string]: string }
   lpBalances: { [address: string]: string } // `${coin0.address}, ${coin1.address}`
   selectedWallet: WalletType
@@ -15,6 +16,7 @@ export interface WalletState {
 
 export const initialState: WalletState = {
   account: undefined,
+  pubkey: undefined,
   coinBalances: {},
   lpBalances: {},
   selectedWallet: WalletType.MARTIAN,
@@ -26,8 +28,9 @@ const walletsSlice = createSlice({
   name: 'wallets',
   initialState,
   reducers: {
-    setAccount(state, { payload }: { payload: { account: string | undefined } }) {
+    setAccount(state, { payload }: { payload: { account: string | undefined; pubkey?: string | undefined } }) {
       state.account = payload.account
+      state.pubkey = payload.pubkey
     },
     setCoinBalances(state, { payload }: { payload: { coinBalances: { [address: string]: string } } }) {
       state.coinBalances = { ...state.coinBalances, ...payload.coinBalances }

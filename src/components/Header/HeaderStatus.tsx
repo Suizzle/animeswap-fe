@@ -135,7 +135,9 @@ function StatusInner() {
   useEffect(() => {
     if ([WalletType.PETRA, WalletType.MARTIAN, WalletType.PONTEM].includes(wallet) && account) {
       if (walletNetwork !== chainId) {
-        if (chainId === SupportedChainId.APTOS) {
+        if (chainId === SupportedChainId.MOVEMENT) {
+          setError('MOVEMENT NET')
+        } else if (chainId === SupportedChainId.APTOS) {
           setError('Mainnet')
         } else if (chainId === SupportedChainId.APTOS_TESTNET) {
           setError('Testnet')
